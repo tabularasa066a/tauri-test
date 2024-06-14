@@ -12,6 +12,13 @@ function App() {
     setGreetMsg(await invoke("greet", { name }));
   }
 
+  function executeCommand() {
+    // invoke('simple_command')
+    invoke('command_with_message', { message: '引数メッセージ' }).then(message => {
+      console.log('command_with_message', message)
+    })
+  }
+
   return (
     <div className="container">
       <h1>Welcome to Tauri!</h1>
@@ -46,6 +53,9 @@ function App() {
       </form>
 
       <p>{greetMsg}</p>
+
+      <div>Hello, Tauri!</div>
+      <button onClick={executeCommand}>ボタンクリック</button>
     </div>
   );
 }
