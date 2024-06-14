@@ -7,6 +7,7 @@ This template should help get you started developing with Tauri, React and Types
 
 ## 注意
 1. `invoke()`メソッドはTauri APIであるから、ブラウザからではなく、アプリで確認すること。
+2. `command`群は`src-tauri\src\lib.rs`に実装すること（？）
 
 ## Recommended IDE Setup
 

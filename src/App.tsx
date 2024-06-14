@@ -14,8 +14,12 @@ function App() {
 
   function executeCommand() {
     // invoke('simple_command')
-    invoke('command_with_message', { message: '引数メッセージ' }).then(message => {
-      console.log('command_with_message', message)
+    // invoke('command_with_message', { message: '引数メッセージ' }).then(message => {
+    //   console.log('command_with_message', message)
+    // })
+    let message_param: object = { field_str: 'some message', field_u32: 12 }
+    invoke('command_with_object', { message: message_param}).then(message => {
+      console.log('command_with_object', message)
     })
   }
 
