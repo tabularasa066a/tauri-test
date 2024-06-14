@@ -1,6 +1,7 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/core";
+import { invoke } from '@tauri-apps/api/core'
+import { open } from "@tauri-apps/plugin-dialog"; // tauri v2ではこれ
 import "./App.css";
 
 function App() {
@@ -39,6 +40,16 @@ function App() {
     })
   }
 
+  function openDialog() {
+    open({
+      multiple: true,
+      filters: [{
+        name: 'Image',
+        extensions: ['png', 'jpeg']
+      }]
+    });
+  }
+
   return (
     <div className="container">
       <h1>Welcome to Tauri!</h1>
@@ -75,7 +86,8 @@ function App() {
       <p>{greetMsg}</p>
 
       <div>Hello, Tauri!</div>
-      <button onClick={executeCommand}>ボタンクリック</button>
+      <button onClick={executeCommand}>Click to execute command</button>
+      <button onClick={openDialog}>Click to open dialog</button>
     </div>
   );
 }
