@@ -45,6 +45,12 @@ fn command_with_error(arg: u32) -> Result<String, String> {
     }
 }
 
+#[tauri::command]
+async fn async_command(arg: u32) -> String {
+    println!("引数: {}", arg);
+    "hello".into()
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -55,6 +61,7 @@ pub fn run() {
             command_with_message,
             command_with_object,
             command_with_error,
+            async_command,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

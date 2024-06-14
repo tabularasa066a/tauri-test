@@ -22,14 +22,21 @@ function App() {
   //     console.log('command_with_object', message)
   //   })
   // }
+
+  // function executeCommand() {
+  //   for (let arg of [1,2,3,4,5]) {
+  //     invoke('command_with_error', { arg }).then(message => {
+  //       console.log('command_with_error(then)', message)
+  //     }).catch(message => {
+  //       console.log('command_with_error(catch)', message)
+  //     })
+  //   }
+  // }
+
   function executeCommand() {
-    for (let arg of [1,2,3,4,5]) {
-      invoke('command_with_error', { arg }).then(message => {
-        console.log('command_with_error(then)', message)
-      }).catch(message => {
-        console.log('command_with_error(catch)', message)
-      })
-    }
+    invoke('async_command', { arg: 14 }).then(message => {
+      console.log('async_command', message)
+    })
   }
 
   return (
