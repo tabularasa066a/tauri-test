@@ -5,6 +5,9 @@ This template should help get you started developing with Tauri, React and Types
 ## 教材
 [この記事](https://zenn.dev/kumassy/books/6e518fe09a86b2)
 
+## Github Actionsによるビルド
+ビルド終了後、リポジトリトップページ右側のReleasesから成果物一覧にアクセスできる
+
 ## 注意
 1. `invoke()`メソッドはTauri APIであるから、ブラウザからではなく、アプリで確認すること。
 2. `command`群は`src-tauri\src\lib.rs`に実装すること（？）
