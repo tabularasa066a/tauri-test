@@ -1,5 +1,6 @@
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 use serde:: { Serialize, Deserialize };
+use tauri::Manager;
 
 #[tauri::command]
 fn greet(name: &str) -> String {
@@ -54,6 +55,15 @@ async fn async_command(arg: u32) -> String {
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .setup(|app| {
+            let _id = app.listen_any("front-to-back", |event| {
+                println!(
+                    "got front-to-back with payload {:?}",
+                    event.payload()
+                )
+            });
+            Ok(())
+        })
         .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![
