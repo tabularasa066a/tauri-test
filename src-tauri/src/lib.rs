@@ -62,6 +62,13 @@ pub fn run() {
                     event.payload()
                 )
             });
+
+            let app_handle = app.app_handle().clone();
+            std::thread::spawn(move || loop {
+                // https://docs.rs/tauri/2.0.0-beta.22/tauri/trait.Manager.html#method.emit
+                app_handle.emit("back-to-front", "ping frontend".to_string()).unwrap();
+                std::thread::sleep(std::time::Duration::from_secs(1))
+            });
             Ok(())
         })
         .plugin(tauri_plugin_shell::init())

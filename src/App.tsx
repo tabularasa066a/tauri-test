@@ -1,13 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import { invoke } from '@tauri-apps/api/core'
 import { open } from "@tauri-apps/plugin-dialog"; // tauri v2ではこれ
-import { emit } from "@tauri-apps/api/event";
+import { emit, listen } from "@tauri-apps/api/event";
 import "./App.css";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
+
+  useEffect(() => {
+    let unlisten: any;
+    async function f() {
+      unlisten = await listen('back-to-front', event => {
+        console.log(`back-to-front ${event.payload} ${new Date()}`)
+      })
+    }
+    f();
+
+    return () => {
+      if (unlisten) {
+        unlisten();
+      }
+    }
+  }, [])
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
