@@ -18,6 +18,8 @@ const UserForm = () => {
         e.preventDefault()
 
         const user = { id: Math.random().toString(), name, age }
+        setName("")
+        setAge(0)
         console.log('submit: ', user)
     }
 
@@ -27,10 +29,10 @@ const UserForm = () => {
                 <h1>Name is {name}</h1>
                 <form className="content-form">
                     <label>Name:</label>
-                    <input type="text" onChange={(e) => onChangeName(e)} />
+                    <input value={name} type="text" onChange={(e) => onChangeName(e)} />
                     
                     <label>Age:</label>
-                    <input type="text" onChange={(e) => onChangeAge(e)} />
+                    <input value={age} type={"number"} onChange={(e) => onChangeAge(e)} />
                     
                     <button onClick={(e) => onSubmit(e)}>Submit</button>
                 </form>
