@@ -114,3 +114,9 @@ button {
     background-color: #0f0f0f69;
   }
 }
+
+.App {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+}

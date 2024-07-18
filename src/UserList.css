@@ -1,0 +1,12 @@
+.user-list-body {
+    list-style: none;
+}
+
+.user-list-body li {
+    margin-top: 12px;
+    height: 120px;
+    background-color: beige;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px 20px;
+}
