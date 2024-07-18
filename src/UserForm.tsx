@@ -1,44 +1,45 @@
-import "./UserForm.css"
-import { useState } from "react"
+import "./UserForm.css";
+import { useState } from "react";
 
-const UserForm = () => {
-    const [name, setName] = useState("");
-    const [age, setAge] = useState(0)
+type Props = {
+  addUser: (user: { id: string; name: string; age: number }) => void;
+};
 
-    const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setName(e.target.value)
-    };
+const UserForm = (props: Props) => {
+  const [name, setName] = useState("");
+  const [age, setAge] = useState(0);
 
-    const onChangeAge = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const age = Number(e.target.value)
-        setAge(age)
-    }
+  const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
 
-    const onSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault()
+  const onChangeAge = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const age = Number(e.target.value);
+    setAge(age);
+  };
 
-        const user = { id: Math.random().toString(), name, age }
-        setName("")
-        setAge(0)
-        console.log('submit: ', user)
-    }
+  const onSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
 
-    return (
-        <div>
-            <div className="content-body">
-                <h1>Name is {name}</h1>
-                <form className="content-form">
-                    <label>Name:</label>
-                    <input value={name} type="text" onChange={(e) => onChangeName(e)} />
-                    
-                    <label>Age:</label>
-                    <input value={age} type={"number"} onChange={(e) => onChangeAge(e)} />
-                    
-                    <button onClick={(e) => onSubmit(e)}>Submit</button>
-                </form>
-            </div>
-        </div>
-    )
-}
+    const user = { id: Math.random().toString(), name, age };
+    props.addUser(user);
+    setName("");
+    setAge(0);
+  };
+
+  return (
+    <div>
+      <div className="content-body">
+        <form className="content-form">
+          <label>Name:</label>
+          <input value={name} onChange={(e) => onChangeName(e)}></input>
+          <label>Age:</label>
+          <input value={age} onChange={(e) => onChangeAge(e)}></input>
+          <button onClick={(e) => onSubmit(e)}>Submit</button>
+        </form>
+      </div>
+    </div>
+  );
+};
 
 export default UserForm;
